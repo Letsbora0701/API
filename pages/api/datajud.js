@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
     const response = await fetch(url, {
       headers: {
-        "Authorization": `APIKey ${cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==}`,
+        "Authorization": `APIKey ${API_KEY}`,
         "Content-Type": "application/json"
       }
     });
