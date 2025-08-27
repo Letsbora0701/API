@@ -7,15 +7,20 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Parâmetro 'query' é obrigatório" });
     }
 
-    // Busca legislação usando urn (leis, decretos etc.)
-    const cql = `urn any lei and (title any ${query} or subject any ${query})`;
+    // Exemplo válido: urn any constituição
+    const cql = `urn any ${query}`;
 
     const url = `https://www.lexml.gov.br/busca/SRU?query=${encodeURIComponent(cql)}&maximumRecords=10`;
     const response = await fetch(url);
-    const xml = await response.text();
 
+    if (!response.ok) {
+      return res.status(response.status).json({ error: "Erro ao consultar LexML" });
+    }
+
+    const xml = await response.text();
     res.setHeader("Content-Type", "application/xml");
     res.status(200).send(xml);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
