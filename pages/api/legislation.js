@@ -7,7 +7,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Parâmetro 'query' é obrigatório" });
     }
 
-    // Adiciona filtro automático para legislação
+    // Filtro automático para legislação
     const cql = `tipoDocumento any lei and (title any ${query} or subject any ${query})`;
 
     const url = `https://www.lexml.gov.br/busca/SRU?query=${encodeURIComponent(cql)}&maximumRecords=10`;
