@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
 
+const API_KEY = "cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==";
+
 export default async function handler(req, res) {
   try {
     const { tribunal, classe, assunto, pagina } = req.query;
@@ -11,7 +13,13 @@ export default async function handler(req, res) {
     if (assunto) url += `&assunto=${encodeURIComponent(assunto)}`;
     if (pagina) url += `&pagina=${encodeURIComponent(pagina)}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        "Authorization": `APIKey ${API_KEY}`,
+        "Content-Type": "application/json"
+      }
+    });
+
     if (!response.ok) {
       return res.status(response.status).json({ error: "Erro ao consultar DataJud CNJ" });
     }
