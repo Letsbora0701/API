@@ -4,7 +4,6 @@ export default async function handler(req, res) {
   try {
     const { tribunal, classe, assunto, pagina } = req.query;
 
-    // Base oficial da API pública DataJud (produção)
     let url = "https://datajud.cnj.jus.br/api_publica_teste/cnj/proc?";
 
     if (tribunal) url += `&tribunal=${encodeURIComponent(tribunal)}`;
@@ -13,7 +12,6 @@ export default async function handler(req, res) {
     if (pagina) url += `&pagina=${encodeURIComponent(pagina)}`;
 
     const response = await fetch(url);
-
     if (!response.ok) {
       return res.status(response.status).json({ error: "Erro ao consultar DataJud CNJ" });
     }
