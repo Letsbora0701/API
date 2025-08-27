@@ -7,8 +7,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Parâmetro 'query' é obrigatório" });
     }
 
-    // Filtro automático para jurisprudência (acórdãos)
-    const cql = `tipoDocumento any acordao and (title any ${query} or subject any ${query})`;
+    // Busca jurisprudência usando urn (acórdãos, súmulas etc.)
+    const cql = `urn any acordao and (title any ${query} or subject any ${query})`;
 
     const url = `https://www.lexml.gov.br/busca/SRU?query=${encodeURIComponent(cql)}&maximumRecords=10`;
     const response = await fetch(url);
