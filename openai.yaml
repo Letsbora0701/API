@@ -1,33 +1,37 @@
 openapi: 3.1.0
 info:
-  title: LexML API
-  description: Busca legislação, jurisprudência e doutrina via LexML SRU API.
+  title: API Proxy DataJud
+  description: Consulta jurisprudência e processos no CNJ DataJud
   version: "1.0.0"
 servers:
-  - url: https://api.vercel.app
+  - url: https://api-qp5181vqi-lets-boras-projects.vercel.app
 paths:
   /api/status:
     get:
-      summary: Verifica se a API está ativa
+      summary: Healthcheck da API
       responses:
         '200':
-          description: OK
-  /api/search:
+          description: API online
+  /api/datajud:
     get:
-      summary: Busca no acervo do LexML
+      summary: Consulta processos/jurisprudência no DataJud CNJ
       parameters:
-        - name: query
+        - name: tribunal
           in: query
-          required: true
+          required: false
           schema: { type: string }
-        - name: start
+        - name: classe
+          in: query
+          required: false
+          schema: { type: string }
+        - name: assunto
+          in: query
+          required: false
+          schema: { type: string }
+        - name: pagina
           in: query
           required: false
           schema: { type: integer, default: 1 }
-        - name: max
-          in: query
-          required: false
-          schema: { type: integer, default: 10 }
       responses:
         '200':
-          description: Resultados da busca em JSON
+          description: Retorno do DataJud em JSON
