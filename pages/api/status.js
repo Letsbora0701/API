@@ -1,3 +1,6 @@
 export default function handler(req, res) {
-  res.status(200).json({ status: "ok", service: "DataJud CNJ API Proxy" });
+  res.status(200).json({
+    status: "ok",
+    service: "DataJud CNJ API Proxy"
+  });
 }
