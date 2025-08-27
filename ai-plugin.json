@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "LexML API",
+  "name_for_model": "lexml_api",
+  "description_for_human": "Busca legislação, jurisprudência e doutrina no LexML.",
+  "description_for_model": "Use esta API para pesquisar legislação, jurisprudência e doutrina no LexML.",
+  "auth": { "type": "none" },
+  "api": {
+    "type": "openapi",
+    "url": "https://api.vercel.app/openapi.yaml"
+  },
+  "logo_url": "https://api.vercel.app/logo.png",
+  "contact_email": "seu-email@dominio.com",
+  "legal_info_url": "https://api.vercel.app/legal"
+}
