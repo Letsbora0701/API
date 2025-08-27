@@ -7,13 +7,12 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Parâmetro 'query' é obrigatório" });
     }
 
-    // 🔮 Exemplo de endpoint LexML (precisa validar endpoint oficial)
-    const url = `http://legis.senado.gov.br/dadosabertos/sicon/legislacao?termo=${encodeURIComponent(query)}`;
+    const url = `https://www.lexml.gov.br/busca/SRU?query=tipoDocumento any lei and ${encodeURIComponent(query)}&maximumRecords=10`;
     const response = await fetch(url);
-    const text = await response.text();
+    const xml = await response.text();
 
     res.setHeader("Content-Type", "application/xml");
-    res.status(200).send(text);
+    res.status(200).send(xml);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
