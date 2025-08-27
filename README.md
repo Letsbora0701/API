@@ -1,19 +1,14 @@
-# LexML API
+# API DataJud CNJ
 
-API para buscar **legislação, jurisprudência e doutrina** no portal LexML.
+Proxy para a API pública do DataJud (CNJ).  
+Permite buscar processos e jurisprudência em JSON.
 
 ## Endpoints
 
-- `/api/status` → Verifica se a API está online  
-- `/api/legislation?query=...` → Busca legislação  
-- `/api/jurisprudence?query=...` → Busca jurisprudência  
-- `/api/doctrine?query=...` → Busca doutrina  
+- `/api/status` → Healthcheck  
+- `/api/datajud?tribunal=TJSP` → Busca processos por tribunal  
+- `/api/datajud?classe=100` → Busca por classe processual  
+- `/api/datajud?assunto=Improbidade Administrativa` → Busca por assunto  
 
-## Deploy no Vercel
-1. Suba este repositório no GitHub com o nome **api**  
-2. Conecte no [Vercel](https://vercel.com/)  
-3. A API será publicada em `https://api.vercel.app` (ou domínio customizado)
-
-## Compatibilidade
-- `openapi.yaml` → documentação OpenAPI 3.1.0  
-- `ai-plugin.json` → manifesto para integrar com OpenAI Plugins  
+## Fonte Oficial
+Documentação da API pública: [DataJud CNJ](https://datajud-wiki.cnj.jus.br/api-publica/)
