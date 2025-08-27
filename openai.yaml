@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: LexML API
+  description: Busca legislação, jurisprudência e doutrina via portal LexML.
+  version: "1.0.0"
+servers:
+  - url: https://api.vercel.app
+paths:
+  /api/status:
+    get:
+      summary: Verifica se a API está ativa
+      responses:
+        '200':
+          description: OK
+  /api/legislation:
+    get:
+      summary: Busca legislação
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: XML de resultado
+  /api/jurisprudence:
+    get:
+      summary: Busca jurisprudência
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: XML de resultado
+  /api/doctrine:
+    get:
+      summary: Busca doutrina
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: XML de resultado
