@@ -7,7 +7,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Parâmetro 'query' é obrigatório" });
     }
 
-    const url = `https://www.lexml.gov.br/busca/SRU?query=tipoDocumento any doutrina and ${encodeURIComponent(query)}&maximumRecords=10`;
+    // Adiciona filtro automático para doutrina
+    const cql = `tipoDocumento any doutrina and (title any ${query} or subject any ${query})`;
+
+    const url = `https://www.lexml.gov.br/busca/SRU?query=${encodeURIComponent(cql)}&maximumRecords=10`;
     const response = await fetch(url);
     const xml = await response.text();
 
